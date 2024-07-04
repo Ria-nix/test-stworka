@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    max-width: 100%;
+    min-width: 320px;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.container-checklist {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+    max-width: 743px;
+    width: 100%;
+    padding: 12px 18px 15px 22px;
+    background: #3579f5;
+    border-radius: 10px;
+}
+
+.container-checklist__progressbar {
+    position: relative;
+}
+
+.container-checklist__progressbar span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+.container-checklist__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.container-checklist__text span,
+.container-checklist__text p {
+    color: #ffffff;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.text__label {
+    display: block;
+    padding: 0px 13px;
+    border-radius: 40px;
+    background: #2364db;
+}
+
+.text__ready {
+    font-weight: 600 !important;
+}
+
+.container-checklist__btn {
+    display: block;
+    width: max-content;
+    margin-left: auto;
+    padding: 10px 25px;
+    color: #4777ed;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    background: #f4f8ff;
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+/* ----------------------------------- ... ---------------------------------- */
+:root {
+    --progress-act: 5;
+}
+.circular-progress {
+    --size: 60px;
+    --half-size: calc(var(--size) / 2);
+    --stroke-width: 1.5px;
+    --radius: calc((var(--size) - var(--stroke-width)) / 2);
+    --circumference: calc(var(--radius) * pi * 2);
+    --dash: calc((var(--progress) * var(--circumference)) / 100);
+    animation: progress-animation 5s linear 0s 1 forwards;
+}
+
+.circular-progress circle {
+    cx: var(--half-size);
+    cy: var(--half-size);
+    r: var(--radius);
+    stroke-width: var(--stroke-width);
+    fill: none;
+    stroke-linecap: round;
+}
+
+.circular-progress circle.bg {
+    stroke: rgba(255, 255, 255, 0.5);
+}
+
+.circular-progress circle.fg {
+    transform: rotate(-90deg);
+    transform-origin: var(--half-size) var(--half-size);
+    stroke-dasharray: var(--dash) calc(var(--circumference) - var(--dash));
+    transition: stroke-dasharray 0.3s linear 0s;
+    stroke: #ffffff;
+}
+
+@property --progress {
+    syntax: "<number>";
+    inherits: false;
+    initial-value: 0;
+}
+
+@keyframes progress-animation {
+    from {
+        --progress: 0;
+    }
+    to {
+        --progress: var(--progress-act);
+    }
+}
